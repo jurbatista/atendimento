@@ -1,104 +1,120 @@
 <html>
 <head>
 <title>ATENDIMENTO INFOLINK</title>
-<meta charset="utf-8" />
+<meta charset="UFT8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link rel="stylesheet" type="text/css" href="view/css/form.css">
+
+
 
 </head>
 <body>
-<?php //utf8_encode(print_r($dados));?>
-	<div id="geral">
-		<div id="formulario">
-			<div id="dadosAtendimento">
-				<table>
-					<tr>
-						<td>Hora</td>
-						<td><input type="text" value="<?=$dados['hora']?>"
-							disabled="disabled"></td>
-					</tr>
-					<tr>
-						<td>Protocolo</td>
-						<td><input type="text" value="<?=$dados['protocolo']?>"
-							disabled="disabled"></td>
-					</tr>
-					<tr>
-						<td>Atendente</td>
-						<td><input type="text" value="<?=$dados['atendente']?>"
-							disabled="disabled"></td>
-					</tr>
-				</table>
-
+	<header>
+		<div id="topo">
+			<div style="float: right;" id="info">
+				<td><?=strtoupper($dados['atendente'])?></td>
+				<td>- <?=$dados['hora']?></td>
+				<td>| <a href="index.php?pg=logout">SAIR</a></td>
 			</div>
-			<form action="controller/receiveDataForm.php" method="POST"
-				name="AtdData">
-				<table>
-
-					<tr>
-						<td>nome</td>
-						<td><input type="text" name="nomeCliente" id="nomeCliente"
-							class="formP" placeholder="nome do cliente" required="required"></td>
-					<tr>
-					<tr>
-						<td>bairro</td>
-						<td>
-							<select name="bairro"> 
-								<option value="0" > selecione o bairro </option>
-							<?php foreach ($dados['bairros'] as $key){ ?>
-							    <option value="<?=$key['id']?>" > <?=$key['desc']?> </option>
-							<?php }	?>
-							</select>
-						</td>
-						<td>cidade</td>
-						<td>
-							<select name="cidade"> 
-								<option value="0" > selecione a cidade </option>
-							<?php foreach ($dados['cidades'] as $key){ ?>
-							    <option value="<?=$key['id']?>" > <?=$key['desc']?> </option>
-							<?php }	?>
-							</select>
-						</td>
-					
-					
-					<tr>
-					
-					
-					<tr>
-						<td>tecnlogia</td>
-						<td><label class="container"> 
-						<input type="radio" name="tec" value="fibra"> Fibra <span class="checkmark"></span>
-						</label>
-						</td>
-						<td><label class="container"> 
-						<input type="radio" name="tec" value="radio"> Rádio <span class="checkmark"></span>
-						</label>
-						</td>
-					</tr>
-					<tr>
-						<td>Problema</td>
-						<td>
-							<select name="problema"> 
-								<option value="0" > selecione a problema </option>
-							<?php foreach ($dados['problemas'] as $key){ ?>
-							    <option value="<?=$key['id']?>" > <?=$key['desc']?> </option>
-							<?php }	?>
-							</select>
-						</td>
-						<td>Status</td>
-						<td>
-							<select name="status"> 
-								<option value="0"> selecione o problema </option>
-							</select>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="reset" value="zerar"> </td>
-						<td></td>
-						<td></td>
-						<td><input type="submit" value="enviar"></td>
-					</tr>
-
-				</table>
-			</form>
 		</div>
+	</header>
+
+
+	<form action="controller/receiveDataForm.php" method="POST"
+		name="AtdData" class="center">
+		<div>
+			<div id="geral">
+				<div id="formulario " class="">
+					<div id="dadosAtendimento">
+						<table>
+							<tr>
+								<td>Protocolo</td>
+								<td><input type="text" value="<?=$dados['protocolo']?>"
+									class="campos" disabled="disabled"></td>
+							</tr>
+
+						</table>
+
+					</div>
+					<table>
+
+						<tr>
+							<td>Nome</td>
+							<td><input type="text" name="nomeCliente" id="nomeCliente"
+								class="formP campos" placeholder="nome do cliente"
+								required="required"></td>
+						
+						
+						<tr>
+						
+						
+						<tr>
+							<td>Bairro</td>
+							<td><select name="bairro">
+									<option value="0">selecione o bairro</option>
+							<?php foreach ($dados['bairros'] as $key){ ?>
+							    <option value="<?=$key['id']?>"> <?=$key['desc']?> </option>
+							<?php }	?>
+							</select></td>
+							<td>Cidade</td>
+							<td><select name="cidade">
+									<option value="0">selecione a cidade</option>
+							<?php foreach ($dados['cidades'] as $key){ ?>
+							    <option value="<?=$key['id']?>"> <?=$key['desc']?> </option>
+							<?php }	?>
+						</select></td>
+						
+						
+						<tr>
+						
+						
+						<tr>
+							<td>Tecnlogia</td>
+							<td><label class="container"> <input type="radio" name="tec"
+									value="fibra" style="cursor: pointer;"> Fibra <span
+									class="checkmark"></span>
+							</label> <label class="container"> <input type="radio" name="tec"
+									value="radio" style="cursor: pointer;"> Rádio <span
+									class="checkmark"></span>
+							</label></td>
+						</tr>
+						<tr>
+							<td>Problema</td>
+							<td><select name="problema">
+									<option value="0">selecione a problema</option>
+							<?php foreach ($dados['problemas'] as $key){ ?>
+							    <option value="<?=$key['id']?>"> <?=$key['desc']?> </option>
+							<?php }	?>
+							</select></td>
+							<td>Status</td>
+							<td><select name="status" class="campos">
+									<option value="0">Selecione o Problema</option>
+							</select></td>
+						</tr>
+						<tr>
+							<td></td>
+
+							<td><input type="reset" value="Zerar" class="btn"></td>
+							<td></td>
+							<td></td>
+							<td><input type="submit" value="Enviar" class="btn"></td>
+						</tr>
+
+					</table>
+				</div>
+	
+	</form>
+
 	</div>
+	</div>
+	<footer>
+		<div id="rodape">
+			<p style="background: #FF530D">
+				<em>Jardriel Sousa e Jurandir Batista®- Direitos Autorais Resevados</em>
+			</p>
+		</div>
+	</footer>
 </body>
 </html>

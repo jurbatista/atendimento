@@ -8,7 +8,7 @@ if (empty($_GET['erro'])) {
     $err=1;
 }
 
-if (!empty($_GET['pg'])){
+if (!empty($_GET['pg']) && $config->isLoged()){
     $pg = $_GET['pg'];
     $config->redirectPage($pg);
 }else{

@@ -17,20 +17,19 @@ class formAtendimentoC
         $db = new formAtdM();
         
         $dados['protocolo'] = $this->GeraProtocolo();
-        $dados['hora'] = $this->gerarHora();
+        $dados['hora'] = $data->gerarHora();
         $dados['atendente'] = $_SESSION['name'];
         $dados['bairros'] = $this->getBairros($db,$data);
         $dados['cidades'] = $this->getCidades($db,$data);
         $dados['problemas'] = $this->getProblemas($db,$data);
+        $dados['status'] = $this->getStatus($db,$data);
+        $dados['radios'] = $this->getRadios($db,$data);
+        $dados['data'] = $data->gerarData();
         include_once "view/formAtendimentoV.php";
     }
     private function GeraProtocolo(){
         $prt = date('ymdGis');
         return $prt;
-    }
-    private function gerarHora(){
-        $hr = date('G:i');
-        return $hr;
     }
     private function getBairros($db,$data){        
         $listaBairros = $db->getBairros($data);
@@ -44,5 +43,12 @@ class formAtendimentoC
         $listaproblemas = $db->getproblemas($data);
         return $listaproblemas;
     }
-    
+    private function getStatus($db,$data){
+        $listastatus = $db->getstatus($data);
+        return $listastatus;
+    }
+    private function getRadios($db,$data){
+        $listastatus = $db->getRadios($data);
+        return $listastatus;
+    }
 }

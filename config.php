@@ -38,5 +38,13 @@ class config{
           return false;
       }
   }
+  function gerarHora(){
+      $hr = date('G:i');
+      return $hr;
+  }
+  function gerarData(){
+      $hr = date('Y-m-d');
+      return $hr;
+  }
 }
 ?>

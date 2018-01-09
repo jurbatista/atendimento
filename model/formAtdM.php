@@ -48,8 +48,21 @@ class formAtdM extends root{
         $rs = $con->query("SELECT id_radio, nome_radio FROM radios ORDER BY nome_radio ASC ");
         $cont = 0 ;
         while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
-            $info[$cont]['id'] = utf8_encode($row->id_radios);
-            $info[$cont]['desc'] = utf8_encode($row->nome_radios);
+            $info[$cont]['id'] = utf8_encode($row->id_radio);
+            $info[$cont]['desc'] = utf8_encode($row->nome_radio);
+            $cont++;
+        }
+        return $info;
+    }
+    public function getStatus($data)
+    {
+        $info = array();
+        $con = $this->conectDB($data);
+        $rs = $con->query("SELECT id_status, nome_status FROM status ORDER BY nome_status ASC ");
+        $cont = 0 ;
+        while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
+            $info[$cont]['id'] = utf8_encode($row->id_status);
+            $info[$cont]['desc'] = utf8_encode($row->nome_status);
             $cont++;
         }
         return $info;

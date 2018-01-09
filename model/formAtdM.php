@@ -41,5 +41,18 @@ class formAtdM extends root{
         }
         return $info;
     }
+    public function getRadios($data)
+    {
+        $info = array();
+        $con = $this->conectDB($data);
+        $rs = $con->query("SELECT id_radio, nome_radio FROM radios ORDER BY nome_radio ASC ");
+        $cont = 0 ;
+        while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
+            $info[$cont]['id'] = utf8_encode($row->id_radios);
+            $info[$cont]['desc'] = utf8_encode($row->nome_radios);
+            $cont++;
+        }
+        return $info;
+    }
 }
 ?>

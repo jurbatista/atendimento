@@ -1,5 +1,5 @@
 <?php
-
+include_once 'config.php';
 class choiceC
 {
     
@@ -10,6 +10,8 @@ class choiceC
     
     private function chamaTela()
     {
+        $cfg = new config();
+        $dados['hora'] = $cfg->gerarHora();
         $dados['atendente'] = $_SESSION['name'];
         include_once "view/choiceV.php";
     }

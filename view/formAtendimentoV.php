@@ -15,7 +15,7 @@
 		<div id="topo">
 			<div style="float: right;" id="info">
 				<td><?=strtoupper($dados['atendente'])?></td>
-				<td>- <?=$dados['hora']?></td>
+				<td>- <?=date('d/m/Y'); echo " - ". $dados['hora']?></td>
 				<td>| <a href="index.php?pg=logout">SAIR</a></td>
 			</div>
 		</div>
@@ -73,25 +73,40 @@
 						<tr>
 							<td>Tecnlogia</td>
 							<td><label class="container"> <input type="radio" name="tec"
-									value="fibra" style="cursor: pointer;"> Fibra <span
+									value="fibra" style="cursor: pointer;" checked="checked"> Fibra <span
 									class="checkmark"></span>
 							</label> <label class="container"> <input type="radio" name="tec"
 									value="radio" style="cursor: pointer;"> Rádio <span
 									class="checkmark"></span>
 							</label></td>
+							
+							<td> Base </td>
+							<td><select name="base">
+							<?php foreach ($dados['radios'] as $key){ ?>
+							    <option value="<?=$key['id']?>" <?=($key['id']==1)?'selected="selected"':"";?>> <?=$key['desc']?> </option>
+							<?php }	?>
+							</select></td>
+							</td>
 						</tr>
 						<tr>
 							<td>Problema</td>
 							<td><select name="problema">
-									<option value="0">selecione a problema</option>
 							<?php foreach ($dados['problemas'] as $key){ ?>
-							    <option value="<?=$key['id']?>"> <?=$key['desc']?> </option>
+							    <option value="<?=$key['id']?>" <?=($key['id']==13)?'selected="selected"':"";?>> <?=$key['desc']?> </option>
 							<?php }	?>
 							</select></td>
 							<td>Status</td>
 							<td><select name="status" class="campos">
-									<option value="0">Selecione o Problema</option>
+									<?php foreach ($dados['status'] as $key){ ?>
+							    <option value="<?=$key['id']?>" <?=($key['id']==1)?'selected="selected"':"";?>> <?=$key['desc']?> </option>
+							<?php }	?>
 							</select></td>
+						</tr>
+						<tr>
+						<td>Notas</td>
+						<td><textarea rows="5" cols="30" nome="notas"></textarea></td>
+							
+						</td>
 						</tr>
 						<tr>
 							<td></td>
@@ -104,7 +119,7 @@
 
 					</table>
 				</div>
-	
+				<input name="data" type="text" value="<?=dados['data']?>" hidden="hidden" >
 	</form>
 
 	</div>

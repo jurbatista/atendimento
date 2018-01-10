@@ -1,0 +1,64 @@
+*{
+	margin:0;
+	
+
+}
+body{
+	background: #eee;
+}
+#topo{
+	background-color: #191970;
+	width: 100%;
+	height: 40px;
+	padding-top: 10px;
+}
+/*Icons*/
+.icon{
+	width: 100px;
+	height: 100px;
+	color:white;
+
+}
+.novoatd{
+	padding-left: 200px;
+
+}
+.lista{
+	text-align: left;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+/*Para Informações do topo lado direito ( ATT , Hora e Sair ) */
+#info{
+	margin-right: 15px;
+	margin-top: 5px;
+	color: white;
+	font-weight: bold;
+}
+#info a{
+	color: white;
+	text-decoration: none;
+}
+
+/*Alinhamento do form*/
+.center {
+    margin: auto;
+    margin-top: 50px;
+    border: 2px solid black;
+    border-radius: 7px;
+    padding: 50px;
+    margin: 145px;
+}
+
+#rodape{
+	text-align: center;
+	background: #FF530D;
+	width: 100%;
+	height: 50px;
+	margin-top: 70px;
+	padding-top: 25px;
+	color: white;
+}

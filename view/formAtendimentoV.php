@@ -15,7 +15,7 @@
 		<div id="topo">
 			<div style="float: right;" id="info">
 				<td><?=strtoupper($dados['atendente'])?></td>
-				<td>- <?=$dados['hora']?></td>
+				<td>- <?=date('G:i')?></td>
 				<td>| <a href="index.php?pg=logout">SAIR</a></td>
 			</div>
 		</div>
@@ -123,6 +123,7 @@
 	<input type="text" name="protocolo" value="<?=$dados['protocolo']?>" hidden="hidden">
 	<input type="text" name="id_atendente" value="<?=$dados['id_atendente']?>" hidden="hidden" >
 	<input type="text" name="data" value="<?=$dados['data']?>" hidden="hidden">
+	<input type="text" name="hora" value="<?=$dados['hora']?>" hidden="hidden">
 	</form>
 
 	</div>

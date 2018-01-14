@@ -17,6 +17,7 @@ $dados['id_status']= $_POST['status'];
 $dados['id_problema']= $_POST['problema'];
 $dados['id_radio']= $_POST['base'];
 $dados['data']= $_POST['data'];
+$dados['hora']= $_POST['hora'];
 
 echo $db->insertAtd($dados, $data);
 

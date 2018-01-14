@@ -39,7 +39,7 @@ class config{
       }
   }
   function gerarHora(){
-      $hr = date('G:i');
+      $hr = date('G:i:s');
       return $hr;
   }
   function gerarData(){

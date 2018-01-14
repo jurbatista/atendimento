@@ -10,7 +10,7 @@ class formAtdM extends root
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         
-         $stmt = $con->prepare("INSERT INTO atd(prot_atd, nome_cliente, notas, id_tecnologia, id_bairro, id_cidade,id_users,id_status,id_problema, id_radios,data) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+         $stmt = $con->prepare("INSERT INTO atd(prot_atd, nome_cliente, notas, id_tecnologia, id_bairro, id_cidade,id_users,id_status,id_problema, id_radios,data,hora) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
          $stmt->bindParam(1, $dados['protocolo']);
          $stmt->bindParam(2, $dados['cliente']);
          $stmt->bindParam(3, $dados['nota']);
@@ -22,6 +22,7 @@ class formAtdM extends root
          $stmt->bindParam(9, $dados['id_problema']);
          $stmt->bindParam(10, $dados['id_radio']);
          $stmt->bindParam(11, $dados['data']);
+         $stmt->bindParam(12, $dados['hora']);
          
          $stmt->execute();
          

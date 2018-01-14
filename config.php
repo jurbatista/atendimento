@@ -10,7 +10,7 @@ class config{
   public $cfg;
   
   function __construct(){
-    $this->cfg = array('host'=>'localhost','user'=>'root','pass'=>'qwe123');
+    $this->cfg = array('host'=>'localhost','user'=>'servicos','pass'=>'doGTXPgpyiAfIqQO3wRl2z0h4Su1eC');
   }
   function redirectPage($pg){
       switch ($pg) {

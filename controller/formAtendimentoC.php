@@ -15,17 +15,17 @@ class formAtendimentoC
     {
         $data = new config();
         $db = new formAtdM();
-        
         $dados['protocolo'] = $this->GeraProtocolo();
         $dados['hora'] = $data->gerarHora();
         $dados['atendente'] = $_SESSION['name'];
+        $dados['id_atendente'] = $_SESSION['id'];
         $dados['bairros'] = $this->getBairros($db,$data);
         $dados['cidades'] = $this->getCidades($db,$data);
         $dados['problemas'] = $this->getProblemas($db,$data);
         $dados['status'] = $this->getStatus($db,$data);
         $dados['radios'] = $this->getRadios($db,$data);
         $dados['data'] = $data->gerarData();
-        include_once "view/formAtendimentoV.php";
+        include_once "view/formAtendimentoV2.php";
     }
     private function GeraProtocolo(){
         $prt = date('ymdGis');

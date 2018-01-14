@@ -122,7 +122,6 @@
 	<!-- dados adicionais do formulário. -->
 	<input type="text" name="protocolo" value="<?=$dados['protocolo']?>" hidden="hidden">
 	<input type="text" name="id_atendente" value="<?=$dados['id_atendente']?>" hidden="hidden" >
-	<input type="text" name="atendente" value="<?=$dados['atendente']?>" hidden="hidden">
 	<input type="text" name="data" value="<?=$dados['data']?>" hidden="hidden">
 	</form>
 

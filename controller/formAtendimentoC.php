@@ -25,7 +25,7 @@ class formAtendimentoC
         $dados['status'] = $this->getStatus($db,$data);
         $dados['radios'] = $this->getRadios($db,$data);
         $dados['data'] = $data->gerarData();
-        include_once "view/formAtendimentoV2.php";
+        include_once "view/formAtendimentoV.php";
     }
     private function GeraProtocolo(){
         $prt = date('ymdGis');

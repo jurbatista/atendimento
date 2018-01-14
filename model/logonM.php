@@ -11,8 +11,9 @@ class logonM extends root
     {
     }
 
-    public function insertUser()
+    public function insertUser($dados)
     {
+        
         /*
         $stmt = $con->prepare("INSERT INTO pessoa(nome, email) VALUES(?, ?)");
         $stmt->bindParam(1, "Nome da Pessoa");

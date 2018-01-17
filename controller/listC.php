@@ -23,6 +23,7 @@ class listC{
         $filter = array('user'=>0,'status'=>0,'tec'=>0);
         
         $listaAtd = 0;
+        $filter['dataI'] = date($format)
                
         if (isset($_GET['f'])){            
             if (isset($_GET['user'])){

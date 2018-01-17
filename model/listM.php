@@ -70,14 +70,23 @@ INNER JOIN radios ON atd.id_radios = radios.id_radios";
             case 1:
                 $query = $query." WHERE atd.id_users = $user";
                 break;
+            case 2:
+                $query = $query." WHERE atd.id_status = $status";
+                break;
             case 3:
                 $query = $query." WHERE atd.id_users = $user AND atd.id_status = $status";
+                break;
+            case 4:
+                $query = $query." WHERE atd.id_status = $status AND atd.id_tecnologia = $tec";
+                break;
+            case 6:
+                $query = $query." WHERE atd.id_tecnologia = $tec";
                 break;
             case 7:
                 $query = $query." WHERE atd.id_users = $user AND atd.id_status = $status AND atd.id_tecnologia = $tec";
                 break;
         }
-
+        echo $contFilter;
         $rs = $con->query($query);
         $cont = 0;
         while ($row = $rs->fetch(PDO::FETCH_OBJ)) {

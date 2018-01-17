@@ -1,6 +1,8 @@
 <?php
 include_once 'config.php';
+include_once 'pages.php';
 $config = new config();
+$pag = new pages();
 
 if (empty($_GET['erro'])) {
     $err = "";
@@ -10,10 +12,10 @@ if (empty($_GET['erro'])) {
 
 if (!empty($_GET['pg']) && $config->isLoged()){
     $pg = $_GET['pg'];
-    $config->redirectPage($pg);
+    $pag->redirectPage($pg);
 }else{
     if ($config->isLoged()){
-        $config->redirectPage('choice');
+        $pag->redirectPage('choice');
     }else{
     include_once 'controller/loginC.php';
     $login = new loginC($err);

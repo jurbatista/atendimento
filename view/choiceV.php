@@ -42,7 +42,7 @@
 			</a>
 			</td>
 			<td colspan="" rowspan="" headers="">
-				<a href="#"><img src="view/img/listar.png" alt="" class="icon">
+				<a href="index.php?pg=list"><img src="view/img/listar.png" alt="" class="icon">
 				
 			<p>Lista de Atendimentos</p>
 			</a>

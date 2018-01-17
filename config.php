@@ -12,22 +12,8 @@ class config{
   function __construct(){
     $this->cfg = array('host'=>'localhost','user'=>'servicos','pass'=>'doGTXPgpyiAfIqQO3wRl2z0h4Su1eC');
   }
-  function redirectPage($pg){
-      switch ($pg) {
-          case 'atd':
-              include_once './controller/formAtendimentoC.php';
-              $atd = new formAtendimentoC();
-              break;
-          case 'logout':
-              $this->destroiSessao();
-              break;
-          case 'choice':
-              include_once './controller/choiceC.php';
-              $choice = new choiceC();
-              break;
-      }
-  }
-  private function destroiSessao(){
+  
+  function destroiSessao(){
       session_destroy();
       header("location:index.php");
   }

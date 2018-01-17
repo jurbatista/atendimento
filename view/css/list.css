@@ -62,3 +62,12 @@ a {
 	padding-top: 25px;
 	color: white;
 }
+#tableList{
+	border: solid 1px #000	;
+}
+#tableList tr{
+border: solid 1px #000	; 
+}
+#tableList td{
+	border: solid 1px #000	;
+}

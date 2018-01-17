@@ -66,12 +66,12 @@
 			</form>
 		</div>
 		<div id="list_atd">
-		<table>
+		<table id="tableList">
 			<tr><td>Procotolo</td><td>Cliente</td><td>Problema</td><td>Notas</td><td>Status</td><td>Atendente</td><td>Data</td></tr>
 			<?php foreach ($listaAtd as $key){ ?>
 			
-			<tr><td><?=$key->prot_atd?></td><td><?=utf8_decode($key->nome_cliente)?></td><td><?=utf8_decode($key->nome_problema)?></td>
-			<td><?=$key->notas?></td><td><?=utf8_decode($key->nome_status)?></td><td><?=utf8_decode($key->name_users)?></td>
+			<tr><td><?=$key->prot_atd?></td><td><?=utf8_encode($key->nome_cliente)?></td><td><?=utf8_encode($key->nome_problema)?></td>
+			<td><?=utf8_encode($key->notas)?></td><td><?=utf8_encode($key->nome_status)?></td><td><?=utf8_decode($key->name_users)?></td>
 			<td><?=$key->data?></td></tr>
 			<?php }?>
 		</table>

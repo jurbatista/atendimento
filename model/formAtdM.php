@@ -13,7 +13,7 @@ class formAtdM extends root
          $stmt = $con->prepare("INSERT INTO atd(prot_atd, nome_cliente, notas, id_tecnologia, id_bairro, id_cidade,id_users,id_status,id_problema, id_radios,data,hora) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
          $stmt->bindParam(1, $dados['protocolo']);
          $stmt->bindParam(2, $dados['cliente']);
-         $stmt->bindParam(3, $dados['nota']);
+         $stmt->bindParam(3, utf8_decode($dados['nota']));
          $stmt->bindParam(4, $dados['id_tec']);
          $stmt->bindParam(5, $dados['id_bairro']);
          $stmt->bindParam(6, $dados['id_cidade']);
@@ -74,11 +74,11 @@ class formAtdM extends root
     {
         $info = array();
         $con = $this->conectDB($data);
-        $rs = $con->query("SELECT id_radio, nome_radio FROM radios ORDER BY nome_radio ASC ");
+        $rs = $con->query("SELECT * FROM radios ORDER BY nome_radios ASC ");
         $cont = 0;
         while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
-            $info[$cont]['id'] = utf8_encode($row->id_radio);
-            $info[$cont]['desc'] = utf8_encode($row->nome_radio);
+            $info[$cont]['id'] = utf8_encode($row->id_radios);
+            $info[$cont]['desc'] = utf8_encode($row->nome_radios);
             $cont ++;
         }
         return $info;

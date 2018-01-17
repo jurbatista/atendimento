@@ -42,14 +42,14 @@
 				Atendente <select name="user" >
 					<option value="" selected="selected" disabled="disabled" style="display: none">Escolha uma opção</option>
 							<?php foreach ($dados['users'] as $key){ ?>
-							    <option value="<?=$key['id']?>" <?=($dados['user']==$key['id'])?'selected="selected"':"";?>> <?=$key['desc']?></option>
+							    <option value="<?=$key['id']?>" <?=($filter['user']==$key['id'])?'selected="selected"':"";?>> <?=$key['desc']?></option>
 							<?php }	?> 
 					</option>
 					
 					</select> Status <select name="status">
 						<option value="" selected="selected" disabled="disabled" style="display: none">Escolha uma opção</option>
 							<?php foreach ($dados['status'] as $key){ ?>
-							    <option value="<?=$key['id']?>"> <?=$key['desc']?></option>
+							    <option value="<?=$key['id']?>" <?=($filter['status']==$key['id'])?'selected="selected"':"";?> > <?=$key['desc']?></option>
 							<?php }	?> 
 						</option>
 					</select> 
@@ -57,14 +57,25 @@
 				Tecnologia <select name="tec">
 					<option value="" selected="selected" disabled="disabled" style="display: none">Escolha uma opção</option>
 							<?php foreach ($dados['tec'] as $key){ ?>
-							    <option value="<?=$key['id']?>"> <?=$key['desc']?></option>
+							    <option value="<?=$key['id']?>" <?=($filter['tec']==$key['id'])?'selected="selected"':"";?> > <?=$key['desc']?></option>
 							<?php }	?> 
 						</option>					
 					</select>
 				<input type="submit" value="filtrar">
+				<input type="reset" value="limpar">
 			</form>
 		</div>
-		<div id="list_atd"></div>
+		<div id="list_atd">
+		<table>
+			<tr><td>Procotolo</td><td>Cliente</td><td>Problema</td><td>Notas</td><td>Status</td><td>Atendente</td><td>Data</td></tr>
+			<?php foreach ($listaAtd as $key){ ?>
+			
+			<tr><td><?=$key->prot_atd?></td><td><?=utf8_decode($key->nome_cliente)?></td><td><?=utf8_decode($key->nome_problema)?></td>
+			<td><?=$key->notas?></td><td><?=utf8_decode($key->nome_status)?></td><td><?=utf8_decode($key->name_users)?></td>
+			<td><?=$key->data?></td></tr>
+			<?php }?>
+		</table>
+		</div>
 	</div>
 
 

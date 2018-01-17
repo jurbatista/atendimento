@@ -40,22 +40,53 @@ class listM extends root{
         }
         return $info;
     }
-    public function getAtd($data)
+    public function getAtd($data,$filters=null)
     {
+       
+        $contFilter = 0;
         $info = array();
         $con = $this->conectDB($data);
-        $rs = $con->query("SELECT * FROM atd INNER JOIN tecnologia ON atd.id_tecnologia = tecnologia.id_tecnologia INNER JOIN bairros ON 
-atd.id_bairro = bairros.id_bairro INNER JOIN cidade ON atd.id_cidade = cidade.id_cidade WHERE atd.id_users = 5 AND atd.id_bairro = 4");
+        
+        $query = "SELECT atd.*, tecnologia.*,users.name_users,bairros.*,cidade.*,status.*,problema.*,radios.* FROM atd 
+INNER JOIN tecnologia ON atd.id_tecnologia = tecnologia.id_tecnologia 
+INNER JOIN bairros ON atd.id_bairro = bairros.id_bairro 
+INNER JOIN cidade ON atd.id_cidade = cidade.id_cidade 
+INNER JOIN users ON atd.id_users = users.id_users
+INNER JOIN status ON atd.id_status = status.id_status
+INNER JOIN problema ON atd.id_problema = problema.id_problema
+INNER JOIN radios ON atd.id_radios = radios.id_radios";
+        
+        $user = $filters['user'];
+        $status = $filters['status'];
+        $tec = $filters['tec'];
+        
+        $contFilter = 0;
+        if($user>0){$contFilter= $contFilter+1;}
+        if($status>0){$contFilter= $contFilter+2;}
+        if($tec>0){$contFilter= $contFilter+4;}
+        
+        
+        switch ($contFilter){
+            case 1:
+                $query = $query." WHERE atd.id_users = $user";
+                break;
+            case 3:
+                $query = $query." WHERE atd.id_users = $user AND atd.id_status = $status";
+                break;
+            case 7:
+                $query = $query." WHERE atd.id_users = $user AND atd.id_status = $status AND atd.id_tecnologia = $tec";
+                break;
+        }
+
+        $rs = $con->query($query);
         $cont = 0;
         while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
             $info[$cont] = $row;            
             $cont ++;
         }
-        echo count($info);
         return $info;
     }
 }
-
 
 
 

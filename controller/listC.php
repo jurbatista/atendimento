@@ -19,11 +19,12 @@ class listC{
         $dados['users'] = $db->getUsers($data);
         $dados['status'] = $db->getStatus($data);
         $dados['tec'] = $db->getTec($data);
+        $dados['dataI'] = date('Y-m').'-01';
+        $dados['dataF'] = date('Y-m-d');
         
         $filter = array('user'=>0,'status'=>0,'tec'=>0);
         
         $listaAtd = 0;
-        $filter['dataI'] = date($format)
                
         if (isset($_GET['f'])){            
             if (isset($_GET['user'])){
@@ -34,6 +35,14 @@ class listC{
             }
             if (isset($_GET['tec'])){
                 $filter['tec'] = $_GET['tec'];
+            }
+            if (isset($_GET['dataI'])){
+                $filter['dataI'] = $_GET['dataI'];
+                $dados['dataI'] = $_GET['dataI'];
+            }
+            if (isset($_GET['dataF'])){
+                $filter['dataF'] = $_GET['dataF'];
+                $dados['dataF'] = $_GET['dataF'];
             }
             $listaAtd = $db->getAtd($data,$filter);
         }else{

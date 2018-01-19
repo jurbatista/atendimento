@@ -21,6 +21,7 @@
 <body>
 	<header>
 		<div id="topo">
+			<div style="float: left;" id="info"><a href="index.php">&nbsp;voltar</a></div>
 			<div style="float: right;" id="info">
 
 				<td><?=strtoupper($dados['atendente'])?></td>
@@ -37,8 +38,8 @@
 			<form action="index.php?pg=list&f=filter" method="get">
 				<input type="text" name="pg" value="list" hidden="hidden">
 				<input type="text" name="f" value="filter" hidden="hidden">
-				Data Inicial <input type="date" name="dataI" value="2018-01-01">
-				Data Final <input type="date" name="dataF" value="<?=$dados['data']?>">
+				Data Inicial <input type="date" name="dataI" value="<?=$dados['dataI']?>">
+				Data Final <input type="date" name="dataF" value="<?=$dados['dataF']?>">
 				Atendente <select name="user" >
 					<option value="" selected="selected" disabled="disabled" style="display: none">Escolha uma opção</option>
 							<?php foreach ($dados['users'] as $key){ ?>
@@ -67,12 +68,12 @@
 		</div>
 		<div id="list_atd">
 		<table id="tableList">
-			<tr><td>Procotolo</td><td>Cliente</td><td>Problema</td><td>Notas</td><td>Status</td><td>Atendente</td><td>Data</td></tr>
+			<tr><td>Procotolo</td><td>Cliente</td><td>Problema</td><td>Status</td><td>Atendente</td><td>Data</td><td>Hora</td></tr>
 			<?php foreach ($listaAtd as $key){ ?>
 			
 			<tr><td><?=$key->prot_atd?></td><td><?=utf8_encode($key->nome_cliente)?></td><td><?=utf8_encode($key->nome_problema)?></td>
-			<td><?=utf8_encode($key->notas)?></td><td><?=utf8_encode($key->nome_status)?></td><td><?=utf8_decode($key->name_users)?></td>
-			<td><?=$key->data?></td></tr>
+			<td><?=utf8_encode($key->nome_status)?></td><td><?=utf8_encode($key->name_users)?></td><td><?=utf8_decode($key->data)?></td>
+			<td><?=$key->hora?></td></tr>
 			<?php }?>
 		</table>
 		</div>

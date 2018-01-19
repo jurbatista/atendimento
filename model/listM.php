@@ -56,9 +56,13 @@ INNER JOIN status ON atd.id_status = status.id_status
 INNER JOIN problema ON atd.id_problema = problema.id_problema
 INNER JOIN radios ON atd.id_radios = radios.id_radios";
         
+        // TRATAMENTO DOS FILTROS
         $user = $filters['user'];
         $status = $filters['status'];
         $tec = $filters['tec'];
+        $filter['dataI'] = date('Y-m')."-01";
+        $filter['dataF'] = date('Y-m-d');
+        
         
         $contFilter = 0;
         if($user>0){$contFilter= $contFilter+1;}
@@ -77,16 +81,28 @@ INNER JOIN radios ON atd.id_radios = radios.id_radios";
                 $query = $query." WHERE atd.id_users = $user AND atd.id_status = $status";
                 break;
             case 4:
-                $query = $query." WHERE atd.id_status = $status AND atd.id_tecnologia = $tec";
+                $query = $query." WHERE atd.id_tecnologia = $tec";
                 break;
             case 6:
-                $query = $query." WHERE atd.id_tecnologia = $tec";
+                $query = $query." WHERE atd.id_status = $status AND atd.id_tecnologia = $tec";
                 break;
             case 7:
                 $query = $query." WHERE atd.id_users = $user AND atd.id_status = $status AND atd.id_tecnologia = $tec";
                 break;
         }
-        echo $contFilter;
+        
+        // TRATAMENTO DE DATA 
+        $dataI = date('Y-m')."-01";
+        $dataF = date('Y-m-d');
+        if(isset($filters['dataI'])){
+        $dataI = $filters['dataI'];
+        $dataF = $filters['dataF'];
+            $query = $query." AND atd.data BETWEEN '$dataI' AND '$dataF'";
+        }else{
+            $query = $query." WHERE atd.data BETWEEN '$dataI' AND '$dataF'";
+        }
+        
+        //$query = $query. " ORDER BY atd.data ASC LIMIT 0,50";
         $rs = $con->query($query);
         $cont = 0;
         while ($row = $rs->fetch(PDO::FETCH_OBJ)) {

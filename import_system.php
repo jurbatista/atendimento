@@ -13,14 +13,13 @@ $cont = 0;
 $cidade = getData('cidade','cidade',conectDB());
 $bairro = getData('bairros','bairro',conectDB());
 $problema = getData('problema','problema',conectDB());
-$radio = getData('radios','radio',conectDB());
+$radio = getData('radios','radios',conectDB());
 $status = getData('status','status',conectDB());
 $tec = getData('tecnologia','tecnologia',conectDB());
 
 //array(array('id'=>'1','desc'=>'fibra'),array('id'=>'1','desc'=>'rádio'));
 
 foreach ($csv as $key){
-    
         $importacao[$cont]['protocolo'] = geraProtocolo(subData($key[3]), subHora($key[4]));
         $importacao[$cont]['cliente'] = utf8_decode($key[0]);
         $importacao[$cont]['id_problema'] = replaceId($problema,$key[1]);
@@ -29,14 +28,19 @@ foreach ($csv as $key){
         $importacao[$cont]['id_tec'] = replaceId($tec, $key[10]);
         $importacao[$cont]['id_radio'] = replaceId($radio, $key[6]);
         $importacao[$cont]['nota'] = utf8_decode($key[5]);
-        $importacao[$cont]['id_atendente'] = 5;
+        $importacao[$cont]['id_atendente']= $key[11];
         $importacao[$cont]['id_status'] = replaceId($status, $key[9]);
         $importacao[$cont]['data'] = subData($key[3]);
         $importacao[$cont]['hora'] = subHora($key[4]);
+        $importacao[$cont]['telefone'] = subTel($key[2]);
         $cont++;
 }
+
+$contadorIsercao = 1;
 foreach ($importacao as $key){
+    print($contadorIsercao."<br>");
     insertAtd($key);
+    $contadorIsercao++;
 }
 
 
@@ -86,6 +90,12 @@ function subHora($hora){
     $hora = $hora.':'.random_int(10, 59);
     return $hora;
 }
+function subTel($tel){
+    $vowels = array("-", "/"," ");
+    $telefone = str_replace($vowels, "", $tel);
+    $tel = substr($telefone, -9);
+    return $tel;
+}
 function geraProtocolo($data,$hora){
     $protocolo = substr(implode("", explode("-", $data)).implode("", explode(":", $hora)), -12);
     return $protocolo;
@@ -97,23 +107,23 @@ function insertAtd($dados)
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     
-    $stmt = $con->prepare("INSERT INTO atd(prot_atd, nome_cliente, notas, id_tecnologia, id_bairro, id_cidade,id_users,id_status,id_problema, id_radios,data,hora) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+    $stmt = $con->prepare("INSERT INTO atd(prot_atd, nome_cliente, telefone_cliente, notas, id_tecnologia, id_bairro, id_cidade,id_users,id_status,id_problema, id_radios,data,hora) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
     $stmt->bindParam(1, $dados['protocolo']);
     $stmt->bindParam(2, $dados['cliente']);
-    $stmt->bindParam(3, $dados['nota']);
-    $stmt->bindParam(4, $dados['id_tec']);
-    $stmt->bindParam(5, $dados['id_bairro']);
-    $stmt->bindParam(6, $dados['id_cidade']);
-    $stmt->bindParam(7, $dados['id_atendente']);
-    $stmt->bindParam(8, $dados['id_status']);
-    $stmt->bindParam(9, $dados['id_problema']);
-    $stmt->bindParam(10, $dados['id_radio']);
-    $stmt->bindParam(11, $dados['data']);
-    $stmt->bindParam(12, $dados['hora']);
+    $stmt->bindParam(3, $dados['telefone']);
+    $stmt->bindParam(4, $dados['nota']);
+    $stmt->bindParam(5, $dados['id_tec']);
+    $stmt->bindParam(6, $dados['id_bairro']);
+    $stmt->bindParam(7, $dados['id_cidade']);
+    $stmt->bindParam(8, $dados['id_atendente']);
+    $stmt->bindParam(9, $dados['id_status']);
+    $stmt->bindParam(10, $dados['id_problema']);
+    $stmt->bindParam(11, $dados['id_radio']);
+    $stmt->bindParam(12, $dados['data']);
+    $stmt->bindParam(13, $dados['hora']);
     
     $stmt->execute();
     
-    echo 'sucesso! <br>';
     
 }
 

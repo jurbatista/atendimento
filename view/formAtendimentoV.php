@@ -13,6 +13,7 @@
 <body>
 	<header>
 		<div id="topo">
+		<div style="float: left;" id="info"><a href="index.php">&nbsp;voltar</a></div>
 			<div style="float: right;" id="info">
 				<td><?=strtoupper($dados['atendente'])?></td>
 				<td>- <?=date('G:i')?></td>

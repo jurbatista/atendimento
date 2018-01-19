@@ -16,17 +16,18 @@ class listC{
         $dados['data'] = $data->gerarData();
         $dados['atendente'] = $_SESSION['name'];
         $dados['id_atendente'] = $_SESSION['id'];
+        $dados['level'] = $_SESSION['level'];
         $dados['users'] = $db->getUsers($data);
         $dados['status'] = $db->getStatus($data);
         $dados['tec'] = $db->getTec($data);
         $dados['dataI'] = date('Y-m').'-01';
         $dados['dataF'] = date('Y-m-d');
-        
         $filter = array('user'=>0,'status'=>0,'tec'=>0);
         
         $listaAtd = 0;
                
-        if (isset($_GET['f'])){            
+        if (isset($_GET['f'])){ 
+            
             if (isset($_GET['user'])){
                 $filter['user'] = $_GET['user'];
             }
@@ -44,12 +45,19 @@ class listC{
                 $filter['dataF'] = $_GET['dataF'];
                 $dados['dataF'] = $_GET['dataF'];
             }
+            //caso o atendente seja nivel 1 ele vai chamar somente o do atendente.
+            if ($dados['level']==1){
+                $filter['user'] = $dados['id_atendente'];
+            }
             $listaAtd = $db->getAtd($data,$filter);
         }else{
-            if($_SESSION['level']>=2){
+            if($dados['level']>=2){
                 $listaAtd = $db->getAtd($data);
             }else{
-                $listaAtd = $db->getAtd($data,$dados['id_atendente']);
+                $filter['user'] = $_SESSION['id'];
+                $filter['dataI'] = $dados['dataI'];
+                $filter['dataF'] = $dados['dataF'];
+                $listaAtd = $db->getAtd($data,$filter);
             }
         }
         

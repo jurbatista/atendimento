@@ -40,15 +40,15 @@
 				<input type="text" name="f" value="filter" hidden="hidden">
 				Data Inicial <input type="date" name="dataI" value="<?=$dados['dataI']?>">
 				Data Final <input type="date" name="dataF" value="<?=$dados['dataF']?>">
-				Atendente <select name="user" >
-					<option value="" selected="selected" disabled="disabled" style="display: none">Escolha uma opção</option>
+				Atendente <select name="user" <?=($dados['level']==1)?'disabled="disabled"':"";?> >
+					<option value="">Escolha uma opção</option>
 							<?php foreach ($dados['users'] as $key){ ?>
 							    <option value="<?=$key['id']?>" <?=($filter['user']==$key['id'])?'selected="selected"':"";?>> <?=$key['desc']?></option>
 							<?php }	?> 
 					</option>
 					
 					</select> Status <select name="status">
-						<option value="" selected="selected" disabled="disabled" style="display: none">Escolha uma opção</option>
+						<option value="">Escolha uma opção</option>
 							<?php foreach ($dados['status'] as $key){ ?>
 							    <option value="<?=$key['id']?>" <?=($filter['status']==$key['id'])?'selected="selected"':"";?> > <?=$key['desc']?></option>
 							<?php }	?> 
@@ -56,7 +56,7 @@
 					</select> 
 					
 				Tecnologia <select name="tec">
-					<option value="" selected="selected" disabled="disabled" style="display: none">Escolha uma opção</option>
+					<option value="">Escolha uma opção</option>
 							<?php foreach ($dados['tec'] as $key){ ?>
 							    <option value="<?=$key['id']?>" <?=($filter['tec']==$key['id'])?'selected="selected"':"";?> > <?=$key['desc']?></option>
 							<?php }	?> 

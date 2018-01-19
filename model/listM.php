@@ -90,7 +90,7 @@ INNER JOIN radios ON atd.id_radios = radios.id_radios";
                 $query = $query." WHERE atd.id_users = $user AND atd.id_status = $status AND atd.id_tecnologia = $tec";
                 break;
         }
-        
+       
         // TRATAMENTO DE DATA 
         $dataI = date('Y-m')."-01";
         $dataF = date('Y-m-d');
@@ -101,7 +101,6 @@ INNER JOIN radios ON atd.id_radios = radios.id_radios";
         }else{
             $query = $query." WHERE atd.data BETWEEN '$dataI' AND '$dataF'";
         }
-        
         //$query = $query. " ORDER BY atd.data ASC LIMIT 0,50";
         $rs = $con->query($query);
         $cont = 0;

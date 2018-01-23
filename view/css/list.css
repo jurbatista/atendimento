@@ -63,11 +63,25 @@ a {
 	color: white;
 }
 #tableList{
-	border: solid 1px #000	;
+	border: solid 1px #bbb;
 }
 #tableList tr{
 border: solid 1px #000	; 
+	
 }
 #tableList td{
-	border: solid 1px #000	;
+	border: solid 1px #bbb;
+	padding: 3px;
+}
+#list_atd{
+	position: relative;
+	width: 1050px;
+	margin: 0 auto;
+}
+#filters{
+	position: relative;
+	height: 100px;
+	width: 1280px;
+	margin: 0 auto;
+	padding-top: 20px;
 }

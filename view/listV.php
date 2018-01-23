@@ -34,7 +34,7 @@
 	<div id="central">
 
 		<div id="filters">
-			<h2>Lista de Atendimentos Realizados</h2>
+			<h2>Lista de Atendimentos Realizados</h2><br>
 			<form action="index.php?pg=list&f=filter" method="get">
 				<input type="text" name="pg" value="list" hidden="hidden">
 				<input type="text" name="f" value="filter" hidden="hidden">
@@ -45,35 +45,28 @@
 							<?php foreach ($dados['users'] as $key){ ?>
 							    <option value="<?=$key['id']?>" <?=($filter['user']==$key['id'])?'selected="selected"':"";?>> <?=$key['desc']?></option>
 							<?php }	?> 
-					</option>
 					
 					</select> Status <select name="status">
 						<option value="">Escolha uma opção</option>
 							<?php foreach ($dados['status'] as $key){ ?>
 							    <option value="<?=$key['id']?>" <?=($filter['status']==$key['id'])?'selected="selected"':"";?> > <?=$key['desc']?></option>
 							<?php }	?> 
-						</option>
 					</select> 
 					
-				Tecnologia <select name="tec">
-					<option value="">Escolha uma opção</option>
-							<?php foreach ($dados['tec'] as $key){ ?>
-							    <option value="<?=$key['id']?>" <?=($filter['tec']==$key['id'])?'selected="selected"':"";?> > <?=$key['desc']?></option>
-							<?php }	?> 
-						</option>					
-					</select>
+				Nome <input type="text" name="nomeCliente" placelholder="Pesquise pelo nome" value="<?=utf8_decode($filter['nomeCliente'])?>">
 				<input type="submit" value="filtrar">
 				<input type="reset" value="limpar">
 			</form>
 		</div>
 		<div id="list_atd">
-		<table id="tableList">
-			<tr><td>Procotolo</td><td>Cliente</td><td>Problema</td><td>Status</td><td>Atendente</td><td>Data</td><td>Hora</td></tr>
+		Sua pesquisa trouxe <?=$result[1]?> resultados<br><br>
+		<table id="tableList" cellspacing="0" width="1000px">
+			<tr><td>Procotolo</td><td>Cliente</td><td>Telefone</td><td>Problema</td><td>Status</td><td>Atendente</td><td>Data</td><td>Hora</td><td>Ações</td></tr>
 			<?php foreach ($listaAtd as $key){ ?>
 			
-			<tr><td><?=$key->prot_atd?></td><td><?=utf8_encode($key->nome_cliente)?></td><td><?=utf8_encode($key->nome_problema)?></td>
-			<td><?=utf8_encode($key->nome_status)?></td><td><?=utf8_encode($key->name_users)?></td><td><?=utf8_decode($key->data)?></td>
-			<td><?=$key->hora?></td></tr>
+			<tr><td><?=$key->prot_atd?></td><td><?=$key->nome_cliente?></td><td><?=$key->telefone_cliente?></td><td><?=utf8_encode($key->nome_problema)?></td>
+			<td><?=utf8_encode($key->nome_status)?></td><td><?=utf8_encode($key->name_users)?></td><td><?=implode("/", array_reverse(explode("-",$key->data)))?></td>
+			<td><?=$key->hora?></td><td><a href="index.php?pg=edit&id=<?=$key->id_atd?>" target="_blank">Visualizar</a></td></tr>
 			<?php }?>
 		</table>
 		</div>
@@ -89,9 +82,11 @@
 			</p>
 		</div>
 	</footer>
-</body>
-</html>
-
+<script type="text/javascript">
+function newWindow() {
+	window.open(this.getAttribute('href'), '_blank');
+}
+</script>
 
 </body>
 

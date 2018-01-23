@@ -20,9 +20,9 @@ class listC{
         $dados['users'] = $db->getUsers($data);
         $dados['status'] = $db->getStatus($data);
         $dados['tec'] = $db->getTec($data);
-        $dados['dataI'] = date('Y-m').'-01';
+        $dados['dataI'] = date('Y-m-d');
         $dados['dataF'] = date('Y-m-d');
-        $filter = array('user'=>0,'status'=>0,'tec'=>0);
+        $filter = array('user'=>0,'status'=>0,'nomeCliente'=>"");
         
         $listaAtd = 0;
                
@@ -34,8 +34,8 @@ class listC{
             if (isset($_GET['status'])){
                 $filter['status'] = $_GET['status'];
             }
-            if (isset($_GET['tec'])){
-                $filter['tec'] = $_GET['tec'];
+            if (isset($_GET['nomeCliente'])){
+                $filter['nomeCliente'] = $_GET['nomeCliente'];
             }
             if (isset($_GET['dataI'])){
                 $filter['dataI'] = $_GET['dataI'];
@@ -47,17 +47,22 @@ class listC{
             }
             //caso o atendente seja nivel 1 ele vai chamar somente o do atendente.
             if ($dados['level']==1){
-                $filter['user'] = $dados['id_atendente'];
+                if($filter['nomeCliente']==""){
+                    $filter['user'] = $dados['id_atendente'];
+                }
             }
-            $listaAtd = $db->getAtd($data,$filter);
+            $result = $db->getAtd($data,$filter);
+            $listaAtd = $result[0];
         }else{
             if($dados['level']>=2){
-                $listaAtd = $db->getAtd($data);
+                $result = $db->getAtd($data);
+                $listaAtd = $result[0];
             }else{
                 $filter['user'] = $_SESSION['id'];
                 $filter['dataI'] = $dados['dataI'];
                 $filter['dataF'] = $dados['dataF'];
-                $listaAtd = $db->getAtd($data,$filter);
+                $result = $db->getAtd($data,$filter);
+                $listaAtd = $result[0];
             }
         }
         

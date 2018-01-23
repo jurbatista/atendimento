@@ -37,10 +37,14 @@
 							</tr>
 							<tr >
 							<td>Nome</td>
-							<td><input type="text" name="nomeCliente" id="nomeCliente" style="width: 580px;"
+							<td><input type="text" name="nomeCliente" id="nomeCliente" style="width: 350px"
 								class="formP campos inp_nome" placeholder="Nome do Cliente"
 								required="required" >
 							</td>
+							<td> Telefone </td>
+							<td><input type="tel" name="tel" class="formP campos" maxlength="11" style="width: 160px" placeholder="telefone" 
+							pattern="[0-9]+$" required="required"></td>
+							</tr>			
 										
 						</table>
 
@@ -103,6 +107,7 @@
 							<?php }	?>
 							</select></td>
 						</tr>
+						<tr>
 						</table>
 						<table>
 							<tr>

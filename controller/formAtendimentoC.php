@@ -24,6 +24,7 @@ class formAtendimentoC
         $dados['problemas'] = $this->getProblemas($db,$data);
         $dados['status'] = $this->getStatus($db,$data);
         $dados['radios'] = $this->getRadios($db,$data);
+        //$dados['procedimentos'] = $this->getProcedimentos($db,$data);
         $dados['data'] = $data->gerarData();
         include_once "view/formAtendimentoV.php";
     }
@@ -50,5 +51,9 @@ class formAtendimentoC
     private function getRadios($db,$data){
         $listastatus = $db->getRadios($data);
         return $listastatus;
+    }
+    private function getProcedimentos($db,$data){
+        $listaProcedimentos = $db->getProcedimentos($data);
+        return $listaProcedimentos;
     }
 }

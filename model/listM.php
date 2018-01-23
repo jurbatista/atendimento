@@ -59,7 +59,7 @@ INNER JOIN radios ON atd.id_radios = radios.id_radios";
         // TRATAMENTO DOS FILTROS
         $user = $filters['user'];
         $status = $filters['status'];
-        $tec = $filters['tec'];
+        $nome = $filters['nomeCliente'];
         $filter['dataI'] = date('Y-m')."-01";
         $filter['dataF'] = date('Y-m-d');
         
@@ -67,7 +67,7 @@ INNER JOIN radios ON atd.id_radios = radios.id_radios";
         $contFilter = 0;
         if($user>0){$contFilter= $contFilter+1;}
         if($status>0){$contFilter= $contFilter+2;}
-        if($tec>0){$contFilter= $contFilter+4;}
+        if($nome!=""){$contFilter= $contFilter+4;}
         
         
         switch ($contFilter){
@@ -81,18 +81,18 @@ INNER JOIN radios ON atd.id_radios = radios.id_radios";
                 $query = $query." WHERE atd.id_users = $user AND atd.id_status = $status";
                 break;
             case 4:
-                $query = $query." WHERE atd.id_tecnologia = $tec";
+                $query = $query." WHERE atd.nome_cliente LIKE '%$nome%'";
                 break;
             case 6:
-                $query = $query." WHERE atd.id_status = $status AND atd.id_tecnologia = $tec";
+                $query = $query." WHERE atd.id_status = $status AND atd.nome_cliente LIKE '%$nome%'";
                 break;
             case 7:
-                $query = $query." WHERE atd.id_users = $user AND atd.id_status = $status AND atd.id_tecnologia = $tec";
+                $query = $query." WHERE atd.id_users = $user AND atd.id_status = $status AND atd.nome_cliente LIKE '%$nome%'";
                 break;
         }
        
         // TRATAMENTO DE DATA 
-        $dataI = date('Y-m')."-01";
+        $dataI = date('Y-m-d');
         $dataF = date('Y-m-d');
         if(isset($filters['dataI'])){
         $dataI = $filters['dataI'];
@@ -101,14 +101,16 @@ INNER JOIN radios ON atd.id_radios = radios.id_radios";
         }else{
             $query = $query." WHERE atd.data BETWEEN '$dataI' AND '$dataF'";
         }
-        //$query = $query. " ORDER BY atd.data ASC LIMIT 0,50";
+        $query = $query. " ORDER BY atd.data ASC, atd.hora ASC";
         $rs = $con->query($query);
         $cont = 0;
         while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
             $info[$cont] = $row;            
             $cont ++;
         }
-        return $info;
+        //$info['cont'] = $cont;
+        $result = array($info,$cont);
+        return $result;
     }
 }
 

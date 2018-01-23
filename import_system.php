@@ -35,7 +35,6 @@ foreach ($csv as $key){
         $importacao[$cont]['telefone'] = subTel($key[2]);
         $cont++;
 }
-
 $contadorIsercao = 1;
 foreach ($importacao as $key){
     print($contadorIsercao."<br>");
@@ -87,7 +86,7 @@ function subData($data){
     return $data;
 }
 function subHora($hora){
-    $hora = $hora.':'.random_int(10, 59);
+    $hora = $hora.':'.rand(10, 59);
     return $hora;
 }
 function subTel($tel){

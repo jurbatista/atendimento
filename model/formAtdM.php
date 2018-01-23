@@ -10,7 +10,7 @@ class formAtdM extends root
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
         
-         $stmt = $con->prepare("INSERT INTO atd(prot_atd, nome_cliente, notas, id_tecnologia, id_bairro, id_cidade,id_users,id_status,id_problema, id_radios,data,hora) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+         $stmt = $con->prepare("INSERT INTO atd(prot_atd, nome_cliente, notas, id_tecnologia, id_bairro, id_cidade,id_users,id_status,id_problema, id_radios,data,hora,telefone_cliente) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
          $stmt->bindParam(1, $dados['protocolo']);
          $stmt->bindParam(2, $dados['cliente']);
          $stmt->bindParam(3, utf8_decode($dados['nota']));
@@ -23,6 +23,7 @@ class formAtdM extends root
          $stmt->bindParam(10, $dados['id_radio']);
          $stmt->bindParam(11, $dados['data']);
          $stmt->bindParam(12, $dados['hora']);
+         $stmt->bindParam(13, $dados['telefone']);
          
          $stmt->execute();
          
@@ -93,6 +94,19 @@ class formAtdM extends root
         while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
             $info[$cont]['id'] = utf8_encode($row->id_status);
             $info[$cont]['desc'] = utf8_encode($row->nome_status);
+            $cont ++;
+        }
+        return $info;
+    }
+    public function getProcedimentos($data)
+    {
+        $info = array();
+        $con = $this->conectDB($data);
+        $rs = $con->query("SELECT * FROM procedimentos ORDER BY nome_procedimento ASC ");
+        $cont = 0;
+        while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
+            $info[$cont]['id'] = utf8_encode($row->id_procedimento);
+            $info[$cont]['desc'] = utf8_encode($row->nome_procedimento);
             $cont ++;
         }
         return $info;

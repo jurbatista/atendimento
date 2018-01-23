@@ -19,6 +19,10 @@ class pages {
                 include_once 'controller/choiceC.php';
                 $choice = new choiceC();
                 break;
+            case 'edit':
+                include_once 'controller/formAtendimentoEditC.php';
+                $edit = new FormAtendimentoEdit();
+                break;
         }
     }
     

@@ -9,7 +9,7 @@
 <html>
 <head>
 <title>ATENDIMENTO INFOLINK</title>
-<meta charset="UFT8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -60,20 +60,28 @@
 		</div>
 		<div id="list_atd">
 		Sua pesquisa trouxe <?=$result[1]?> resultados<br><br>
-		<table id="tableList" cellspacing="0" width="1000px">
+		<table id="tableList" cellspacing="0" width="1300">
 			<tr><td>Procotolo</td><td>Cliente</td><td>Telefone</td><td>Problema</td><td>Status</td><td>Atendente</td><td>Data</td><td>Hora</td><td>Ações</td></tr>
 			<?php foreach ($listaAtd as $key){ ?>
 			
-			<tr><td><?=$key->prot_atd?></td><td><?=$key->nome_cliente?></td><td><?=$key->telefone_cliente?></td><td><?=utf8_encode($key->nome_problema)?></td>
+			<tr><td><?=$key->prot_atd?></td><td><?=utf8_encode($key->nome_cliente)?></td><td><?=$key->telefone_cliente?></td><td><?=utf8_encode($key->nome_problema)?></td>
 			<td><?=utf8_encode($key->nome_status)?></td><td><?=utf8_encode($key->name_users)?></td><td><?=implode("/", array_reverse(explode("-",$key->data)))?></td>
-			<td><?=$key->hora?></td><td><a href="index.php?pg=edit&id=<?=$key->id_atd?>" target="_blank">Visualizar</a></td></tr>
+			<td><?=$key->hora?></td>
+			<td><a href="#" onclick="window.open('index.php?pg=view&id=<?=$key->id_atd?>', 'Pagina', 'STATUS=NO, TOOLBAR=NO, LOCATION=NO, DIRECTORIES=NO, RESISABLE=NO, SCROLLBARS=YES, TOP=10, LEFT=10, WIDTH=1000, HEIGHT=600');">Visualizar </a>
+				<?php if($_SESSION['id']==$key->id_users or $_SESSION['level']!=1){?>
+				<a href="index.php?pg=edit&id=<?=$key->id_atd?>">| Editar</a>
+				<?php }?>
+				<?php if($_SESSION['level']!=1){?>
+				<a href="index.php?pg=edit&id=<?=$key->id_atd?>">| Excluir</a>
+				<?php }?>
+			</td></tr>
 			<?php }?>
 		</table>
 		</div>
 	</div>
 
 
-
+   
 
 	<footer>
 		<div id="rodape">

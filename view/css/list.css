@@ -72,11 +72,12 @@ border: solid 1px #000	;
 #tableList td{
 	border: solid 1px #bbb;
 	padding: 3px;
+	height: 30px;
 }
 #list_atd{
 	position: relative;
-	width: 1050px;
-	margin: 0 auto;
+	width: 1300px;
+	left: 40px;
 }
 #filters{
 	position: relative;

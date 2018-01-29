@@ -7,7 +7,7 @@ $data = new config();
 
 $dados = array();
 $dados['protocolo'] = $_POST['protocolo'] ;
-$dados['cliente'] = $_POST['nomeCliente'];
+$dados['cliente'] = utf8_decode($_POST['nomeCliente']);
 $dados['nota']= $_POST['notas'];
 $dados['id_tec']= $_POST['tec'];
 $dados['id_bairro']= $_POST['bairro'];

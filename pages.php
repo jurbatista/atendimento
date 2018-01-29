@@ -23,6 +23,14 @@ class pages {
                 include_once 'controller/formAtendimentoEditC.php';
                 $edit = new FormAtendimentoEdit();
                 break;
+            case 'view':
+                include_once 'controller/formAtendimentoViewC.php';
+                $view = new FormAtendimentoView();
+                break;
+            case 'rel':
+                include_once 'controller/relatoriosC.php';
+                $view = new relatoriosC();
+                break;
         }
     }
     

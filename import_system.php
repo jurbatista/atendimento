@@ -3,6 +3,7 @@
 ini_set('display_errors',1);
 ini_set('display_startup_erros',1);
 error_reporting(E_ALL);
+header('Content-Type: text/html; charset=utf-8');
 
 $csv = array_map('str_getcsv', file('atd.csv'));
 
@@ -17,7 +18,6 @@ $radio = getData('radios','radios',conectDB());
 $status = getData('status','status',conectDB());
 $tec = getData('tecnologia','tecnologia',conectDB());
 
-//array(array('id'=>'1','desc'=>'fibra'),array('id'=>'1','desc'=>'rádio'));
 
 foreach ($csv as $key){
         $importacao[$cont]['protocolo'] = geraProtocolo(subData($key[3]), subHora($key[4]));
@@ -35,12 +35,10 @@ foreach ($csv as $key){
         $importacao[$cont]['telefone'] = subTel($key[2]);
         $cont++;
 }
+print_r($importacao);
 $contadorIsercao = 1;
-foreach ($importacao as $key){
-    print($contadorIsercao."<br>");
-    insertAtd($key);
-    $contadorIsercao++;
-}
+
+foreach ($importacao as $key){print($contadorIsercao."<br>");insertAtd($key);$contadorIsercao++;}
 
 
 function conectDB(){
@@ -66,7 +64,11 @@ function getData($tabela,$campo,$con){
 function replaceId($dados,$desc,$par='id'){
     $id = 0;
     foreach ($dados as $key){
-        if($key['desc'] == $desc){
+        
+        $d = strtolower(remover_caracter($key['desc']));
+        $d2 = strtolower(remover_caracter($desc));
+        //print $d." = ".$d2.'|<br>';
+        if($d == $d2){
             $id = $key[$par];
         }
     }
@@ -79,6 +81,7 @@ function subBairro($bairro,$desc){
             $id = $key['id'];
         }
     }
+   
     return $id;
 }
 function subData($data){
@@ -126,6 +129,23 @@ function insertAtd($dados)
     
 }
 
+function remover_caracter($string) {
+    $string = preg_replace("/(á|à|â|ã|ä)/", "a", $string);
+    $string = preg_replace("/(Á|À|Â|Ã|Ä)/", "A", $string);
+    $string = preg_replace("/(é|è|ê)/", "e", $string);
+    $string = preg_replace("/(É|È|Ê)/", "E", $string);
+    $string = preg_replace("/(í|ì)/", "i", $string);
+    $string = preg_replace("/(Í|Ì)/", "I", $string);
+    $string = preg_replace("/(ó|ò|ô|õ|ö)/", "o", $string);
+    $string = preg_replace("/(Ó|Ò|Ô|Õ|Ö)/", "O", $string);
+    $string = preg_replace("/(ú|ù|ü)/", "u", $string);
+    $string = preg_replace("/(Ú|Ù|Ü)/", "U", $string);
+    $string = preg_replace("/ç/", "c", $string);
+    $string = preg_replace("/Ç/", "C", $string);
+    $string = preg_replace("/(-|;|@|!)/", "", $string);
+    $string = preg_replace("/ /", "", $string);
+    return $string;
+}
 
 
 

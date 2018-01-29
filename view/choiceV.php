@@ -48,7 +48,7 @@
 			</a>
 			</td>
 				<td colspan="" rowspan="" headers="">
-				<a href="#"><img src="view/img/relatorio.png" alt="" class="icon">
+				<a href="index.php?pg=rel"><img src="view/img/relatorio.png" alt="" class="icon">
 				
 			<p>Relatórios</p>
 			</a>
@@ -74,7 +74,7 @@
 	<footer>
 		<div id="rodape">
 			<p style="background: #FF530D">
-				<em>Jardriel Sousa e Jurandir Batista ® - Direitos Autorais Resevados</em>
+				<em>INFOLINK TELECOM® - Direitos Autorais Resevados</em>
 			</p>
 		</div>
 	</footer>

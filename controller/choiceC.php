@@ -11,7 +11,7 @@ class choiceC
     private function chamaTela()
     {
         $cfg = new config();
-        $dados['hora'] = $cfg->gerarHora();
+        $dados['hora'] = $cfg->gerarData();
         $dados['atendente'] = $_SESSION['name'];
         include_once "view/choiceV.php";
     }

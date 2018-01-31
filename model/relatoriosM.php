@@ -11,19 +11,33 @@ class relatoriosM extends root
     {
     }
 
-    public function insertUser($dados)
+    public function totalReg($data)
     {
+        $con = $this->conectDB($data);
+        $rs = $con->query("SELECT COUNT('id_atd') AS total FROM atd");
+        $row = $rs->fetch(PDO::FETCH_OBJ);
+        $info = $row->total;
+        return $info;
+    }
+    public function totalStatus($data)
+    {
+        $con = $this->conectDB($data);
+        $rs = $con->query("SELECT COUNT(atd.id_status) AS cstatus, status.nome_status FROM `atd` 
+INNER JOIN status ON atd.id_status = status.id_status GROUP BY status.nome_status");
+        $cont = 0;
+        $info;
+        while ($row = $rs->fetch(PDO::FETCH_OBJ)){
+            $info[$cont]['cstatus'] = $row->cstatus;
+            $info[$cont]['status'] = utf8_encode($row->nome_status);
+            $cont++;
+        }
         
-        /*
-        $stmt = $con->prepare("INSERT INTO pessoa(nome, email) VALUES(?, ?)");
-        $stmt->bindParam(1, "Nome da Pessoa");
-        $stmt->bindParam(2, "email@email.com");
-        $stmt->execute();*/
+        return $info;
     }
 
     public function getUserLogin($user, $data)
     {   
-        $info = array();
+        $info;
         $con = $this->conectDB($data);        
         $rs = $con->query("SELECT login_users, pass_users FROM users WHERE login_users = '$user'");
         while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
@@ -32,17 +46,5 @@ class relatoriosM extends root
         }
         return $info;
     }
-    public function getUser($user, $data)
-    {
-        $info = array();
-        $con = $this->conectDB($data);
-        $rs = $con->query("SELECT id_users, name_users, email_users,level_users FROM users WHERE login_users = '$user'");
-        while ($row = $rs->fetch(PDO::FETCH_OBJ)) {
-            $info['id'] = $row->id_users;
-            $info['name'] = $row->name_users;
-            $info['email'] = $row->email_users;
-            $info['level'] = $row->level_users;
-        }
-        return $info;
-    }
+    
 }

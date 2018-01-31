@@ -5,6 +5,7 @@
 }
 body{
 	background: #eee;
+	font-family: helvetica;
 }
 #topo{
 	background-color: #191970;
@@ -54,3 +55,49 @@ a {
 	padding-top: 25px;
 	color: white;
 }
+#chart-container{
+	position: relative;
+	width: 100%;
+	top: 40px;
+	
+	background: white;
+	margin: 0 auto;
+}
+#ch_title{
+	position: relative;
+	width: 100%;
+	left: 30px;
+	top: 10px;
+}
+
+#chart-container_expansive{
+	position: relative;
+	width: 100%;
+	top: 40px;	
+	background: white;
+	margin: 0 auto;
+	text-align: center;
+	padding-bottom: 30px;
+}
+#table_atendimentos_geral{
+	width: 700px;
+	
+}
+#table_atendimentos_geral td{
+	border: solid 1px #bbb;
+	padding: 3px;
+	height: 30px;
+}
+#tableAtdGerais{
+	position: relative;
+	width: 700px;
+	margin: 0 auto;
+}
+
+
+
+
+
+
+
+

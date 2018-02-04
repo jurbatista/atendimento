@@ -5,6 +5,7 @@
 }
 body{
 	background: #eee;
+	font-family: helvetica;
 }
 #topo{
 	background-color: #191970;
@@ -14,14 +15,13 @@ body{
 }
 /*Icons*/
 .icon{
-	width: 100px;
-	height: 100px;
+	width: 120px;
+	height: 120px;
 	color:white;
 
 }
-.novoatd{
-	padding-left: 200px;
-
+#novoatd{
+	
 }
 .lista{
 	text-align: left;
@@ -44,16 +44,19 @@ a {
 }
 
 /*Alinhamento do form*/
-.center {
+#center {
     margin: auto;
     margin-top: 50px;
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 7px;
-    padding: 50px;
     margin: 145px;
+    height: 230px;
+    width: 1000px;
+    background-color: #fff;
 }
 
 #rodape{
+	position: absolute;
 	text-align: center;
 	background: #FF530D;
 	width: 100%;
@@ -61,4 +64,11 @@ a {
 	margin-top: 70px;
 	padding-top: 25px;
 	color: white;
+	bottom: 0px;
+}
+#tableIcons{
+	width: 1000px;
+	margin: 0 auto;
+	padding-top: 35px;
+	text-align: center;
 }

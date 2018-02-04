@@ -15,19 +15,15 @@
 		<div id="topo">
 			<div style="float: right;" id="info">
 				<td><?=strtoupper($dados['atendente'])?></td>
-				<td>- <?=$dados['hora']?></td>
+				<td>- <?=implode("/",array_reverse(explode("-",$dados['hora'])))?></td>
 				<td>| <a href="index.php?pg=logout">SAIR</a></td>
 			</div>
 		</div>
 	</header>
 
-
-
-
-	</div>
-	<div class="center">
-		<div class="novoatd">
-			<table>
+	<div id="center">
+		<div id="novoatd">
+			<table id="tableIcons">
 				<tr>
 					<td><a href="index.php?pg=atd"><img src="view/img/novo.png"
 							alt="novo atendimento" class="icon">
@@ -39,8 +35,6 @@
 						href="<?=($_SESSION['level']>=2)?'index.php?pg=rel':'#';?>"><img
 							src="view/img/relatorio.png" alt="" class="icon">
 							<p>Relatórios</p> </a></td>
-
-					</td>
 					<td colspan="" rowspan="" headers=""><a href=""><img
 							src="view/img/config.png" alt="" class="icon">
 							<p>Configurações</p> </a></td>
@@ -58,7 +52,7 @@
 	<footer>
 		<div id="rodape">
 			<p style="background: #FF530D">
-				<em>INFOLINK TELECOM® - Direitos Autorais Resevados</em>
+				<em>INFOLINK TELECOM® - Direitos Autorais Reservados</em>
 			</p>
 		</div>
 	</footer>

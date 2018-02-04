@@ -110,15 +110,11 @@
 						</tr>
 						</table>
 
-					</table>
 				</div>
 	
 	<!-- dados adicionais do formulário. -->
 	<input type="text" name="data" value="<?=$dados['data']?>" hidden="hidden">
 	<input type="text" name="hora" value="<?=$dados['hora']?>" hidden="hidden">
 	</form>
-
-	</div>
-	</div>
 </body>
 </html>

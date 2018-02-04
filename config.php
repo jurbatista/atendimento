@@ -1,10 +1,12 @@
 <?php
-
+header("Content-Type: text/html; charset=utf-8");
+header("Cache-Control: no-cache, must-revalidate");
+header("Expires: Sun, 11 Apr 2010 05:00:00 GMT");
 ini_set('display_errors',1);
 ini_set('display_startup_erros',1);
 error_reporting(E_ALL);
 session_start();
-header('Content-Type: text/html; charset=utf-8');
+
 class config{
   /* ESSA CLASSE CONTEM AS CONFIGURAÇÕES DO SISTEMA, MUITO CUIDADO AO MODIFICAR */
   public $cfg;

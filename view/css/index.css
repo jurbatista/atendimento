@@ -1,5 +1,11 @@
 body{
 	background: #eee;
+	font-family: helvetica;
+	background-image: url("../img/infolin.jpg");
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	overflow: hidden;
+	
 }
 #geral{
 	position: relative;
@@ -9,37 +15,40 @@ body{
 	right: 0px;
 	width: 100%;
 	height: 100%;
-	
-	font-family: helvetica;
+	font-family:  "Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 #loginBox{
-	position: relative;
-	margin: 200 auto;
-	width: 400px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-top: -150px;
+	margin-left: -150px;
+	width: 300px;
+	height: 300px;
+	background: white;
+	padding-top: 20px;
+	padding-bottom: 10px;
+	border-radius: 10px;	
+	box-shadow: -2px 2px 20px #333;
 }
 #titleBox{
 	position: relative;
-	top:0px;
-	background-color: #191970;
-	color: white;
-	border-top-left-radius: 15px;
-	border-top-right-radius: 15px;
 	padding: 10px;
-	font-size: 25px;
+	font-size: 17px;
+	text-align: center;
 }
 #bodyBox{
-	background-color: #FF4500;
-	border-bottom-left-radius: 15px;
-	border-bottom-right-radius: 15px;
-	padding-top: 20px;
-	padding-bottom: 10px;
-	padding-right: 10px;
-	padding-left: 10px;
 	text-align: center;	
 }
-
-
-
-
+input{
+	width: 220px;
+	border: solid #aaa 1px;
+	padding: 10px;
+	border-radius: 10px;
+}
+#aviso{
+	color: red;
+	font-size: 12px;
+}
 
 

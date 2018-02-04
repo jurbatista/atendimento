@@ -86,7 +86,7 @@
 	<footer>
 		<div id="rodape">
 			<p style="background: #FF530D">
-				<em>INFOLINK TELECOM® - Todos Direitos Resevados</em>
+				<em>INFOLINK TELECOM® - Direitos Autorais Reservados</em>
 			</p>
 		</div>
 	</footer>

@@ -1,7 +1,5 @@
 *{
 	margin:0;
-	
-
 }
 body{
 	background: #eee;
@@ -14,12 +12,6 @@ body{
 	padding-top: 10px;
 }
 /*Icons*/
-.icon{
-	width: 100px;
-	height: 100px;
-	color:white;
-
-}
 a {
 	text-decoration: none;
 	color: black;
@@ -58,10 +50,10 @@ a {
 #chart-container{
 	position: relative;
 	width: 100%;
-	top: 40px;
-	
+	top: 40px;	
 	background: white;
 	margin: 0 auto;
+	overflow: hidden;
 }
 #ch_title{
 	position: relative;
@@ -78,10 +70,26 @@ a {
 	margin: 0 auto;
 	text-align: center;
 	padding-bottom: 30px;
+	padding-top: 20px;
 }
 #table_atendimentos_geral{
-	width: 700px;
-	
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+#table_atendimentos_geral td, #table_atendimentos_geral th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+#table_atendimentos_geral tr:nth-child(even){background-color: #f2f2f2;}
+#table_atendimentos_geral tr:hover {background-color: #ddd;}
+#table_atendimentos_geral td:hover {background-color: #ccc;}
+#table_atendimentos_geral th{
+	padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #191970;
+    color: white;
 }
 #table_atendimentos_geral td{
 	border: solid 1px #bbb;
@@ -93,11 +101,57 @@ a {
 	width: 700px;
 	margin: 0 auto;
 }
+#total{
+	background-color: #ccc;
+	font-weight: bold;
+}
 
 
-
-
-
+#chart-container2{
+	position: relative;
+	width: 100%;
+	height: 600px;
+	top: 50px;	
+	background: white;
+	margin: 0 auto;
+}
+#chart-container_expansive2{
+	position: relative;
+	width: 100%;
+	top: 40px;	
+	background: white;
+	margin: 0 auto;
+	text-align: center;
+	padding-bottom: 30px;
+	padding-top: 20px;
+}
+#table_atendimentos_geral2{
+	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+#table_atendimentos_geral2 td, #table_atendimentos_geral2 th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+#table_atendimentos_geral2 tr:nth-child(even){background-color: #f2f2f2;}
+#table_atendimentos_geral2 tr:hover {background-color: #ddd;}
+#table_atendimentos_geral2 td:hover {background-color: #ccc;}
+#table_atendimentos_geral2 th{
+	padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #191970;
+    color: white;
+}
+#table_atendimentos_geral2 td{
+	border: solid 1px #bbb;
+	padding: 3px;
+	height: 30px;
+}
+#dadosPorUsuario{
+	position: relative;
+}
 
 
 

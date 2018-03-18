@@ -19,6 +19,8 @@ $dados['id_radio']= $_POST['base'];
 $dados['telefone']= $_POST['tel'];
 $dados['id_atd'] = $_POST['id_atd'];
 
+$data->logMsg($_SESSION['name'] . " editou atendimento de protocolo " . $dados['protocolo'],"../info.log");
+
 $db->updAtd($dados, $data);
 
 include_once '../view/sucessEdit.php';

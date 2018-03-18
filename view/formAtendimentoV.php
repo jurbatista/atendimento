@@ -1,27 +1,9 @@
-<html>
-<head>
-<title>ATENDIMENTO INFOLINK</title>
-<meta charset="UFT8">
-
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-
+<?php 
+$scripts ='
 <link rel="stylesheet" type="text/css" href="view/css/form.css">
-
-
-
-</head>
-<body>
-	<header>
-		<div id="topo">
-		<div style="float: left;" id="info"><a href="index.php">&nbsp;voltar</a></div>
-			<div style="float: right;" id="info">
-				<td><?=strtoupper($dados['atendente'])?></td>
-				<td>- <?=date('G:i')?></td>
-				<td>| <a href="index.php?pg=logout">SAIR</a></td>
-			</div>
-		</div>
-	</header>
-
+';
+include_once 'view/header.php';
+?>
 
 	<form action="controller/receiveDataForm.php" method="POST"
 		name="AtdData" class="center">
@@ -38,11 +20,11 @@
 							<tr >
 							<td>Nome</td>
 							<td><input type="text" name="nomeCliente" id="nomeCliente" style="width: 350px"
-								class="formP campos inp_nome" placeholder="Nome do Cliente"
+								class="formP campos inp_nome" 
 								required="required" >
 							</td>
 							<td> Telefone </td>
-							<td><input type="tel" name="tel" class="formP campos" maxlength="11" style="width: 160px" placeholder="telefone" 
+							<td><input type="tel" name="tel" class="formP campos" maxlength="11" style="width: 160px" 
 							pattern="[0-9]+$" required="required"></td>
 							</tr>			
 										
@@ -77,13 +59,20 @@
 						
 						<tr>
 							<td>Tecnlogia</td>
-							<td><label class="container"> &nbsp;&nbsp;<input type="radio" name="tec"
-									value="1" style="cursor: pointer;" checked="checked"> Fibra <span
-									class="checkmark"></span><br>&nbsp;
-							</label> <label class="container"> <input type="radio" name="tec"
-									value="2" style="cursor: pointer;"> Rádio <span
-									class="checkmark"></span>
-							</label></td>
+							<td>
+								<label class="container"> &nbsp;&nbsp;<input type="radio" name="tec"
+										value="1" style="cursor: pointer;" checked="checked"> Fibra <span
+										class="checkmark"></span></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+								<label class="container"> <input type="radio" name="tec"
+								value="3" style="cursor: pointer;"> Eng. de Rede <span
+								class="checkmark"></span></label><br>&nbsp;
+								
+								<label class="container"> <input type="radio" name="tec"
+										value="2" style="cursor: pointer;"> Rádio <span
+										class="checkmark"></span></label> 
+								
+							</td>
 							
 							<td> Base </td>
 							<td><select name="base" class="campos">
@@ -97,7 +86,7 @@
 							<td>Problema</td>
 							<td><select name="problema"  class="campos">
 							<?php foreach ($dados['problemas'] as $key){ ?>
-							    <option value="<?=$key['id']?>" <?=($key['id']==8)?'selected="selected"':"";?>> <?=$key['desc']?> </option>
+							    <option value="<?=$key['id']?>" <?=($key['id']==13)?'selected="selected"':"";?>> <?=$key['desc']?> </option>
 							<?php }	?>
 							</select></td>
 							<td class="esp">Status</td>
@@ -112,7 +101,7 @@
 						<table>
 							<tr>
 								<td style="vertical-align: top">Notas:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-								<td><textarea rows="5" cols="70" name="notas"></textarea></td>
+								<td><textarea style="width: 585px; height: 100px;" name="notas"></textarea></td>
 							</tr>
 						</table>
 						<table id="table3" width="654px">
@@ -134,12 +123,6 @@
 
 	</div>
 	</div>
-	<footer>
-		<div id="rodape">
-			<p style="background: #FF530D">
-				<em>INFOLINK TELECOM® - Direitos Autorais Reservados</em>
-			</p>
-		</div>
-	</footer>
-</body>
-</html>
+	<?php 
+include_once 'view/foot.php';
+?>

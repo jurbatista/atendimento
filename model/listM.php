@@ -97,11 +97,11 @@ INNER JOIN radios ON atd.id_radios = radios.id_radios";
         if(isset($filters['dataI'])){
         $dataI = $filters['dataI'];
         $dataF = $filters['dataF'];
-            $query = $query." AND atd.data BETWEEN '$dataI' AND '$dataF'";
+            $query = $query." AND atd.data BETWEEN '$dataI' AND '$dataF' ORDER BY atd.data ASC, atd.hora ASC";
         }else{
-            $query = $query." WHERE atd.data BETWEEN '$dataI' AND '$dataF'";
+            $query = $query." WHERE atd.data BETWEEN '$dataI' AND '$dataF' ORDER BY atd.data DESC, atd.hora DESC";
         }
-        $query = $query. " ORDER BY atd.data ASC, atd.hora ASC";
+        //$query = $query. " ORDER BY atd.data DESC, atd.hora DESC";
         $rs = $con->query($query);
         $cont = 0;
         while ($row = $rs->fetch(PDO::FETCH_OBJ)) {

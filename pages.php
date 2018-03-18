@@ -13,6 +13,7 @@ class pages {
                 break;
             case 'logout':
                 $config = new config();
+				$config->logMsg($_SESSION['name'] . " deslogou. ");
                 $config->destroiSessao();
                 break;
             case 'choice':
@@ -30,6 +31,13 @@ class pages {
             case 'rel':
                 include_once 'controller/relatoriosC.php';
                 $view = new relatoriosC();
+                break;
+            case 'rel2':
+                include_once 'controller/relatoriosC_single.php';
+                $view = new relatoriosC();
+                break;
+            case 'rm':
+                include_once 'controller/rm.php';
                 break;
         }
     }

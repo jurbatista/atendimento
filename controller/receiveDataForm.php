@@ -20,6 +20,8 @@ $dados['data']= $_POST['data'];
 $dados['hora']= $_POST['hora'];
 $dados['telefone']= $_POST['tel'];
 
+$data->logMsg($_SESSION['name'] . " adicionou atendimento de protocolo " . $dados['protocolo'],"../info.log");
+
 echo $db->insertAtd($dados, $data);
 
 include_once '../view/sucess.php';

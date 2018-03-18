@@ -11,19 +11,19 @@ class relatoriosM extends root
     {
     }
 
-    public function totalReg($data)
+    public function totalReg($data,$dataInicial,$dataFinal)
     {
         $con = $this->conectDB($data);
-        $rs = $con->query("SELECT COUNT('id_atd') AS total FROM atd WHERE data BETWEEN '2018-01-01' AND '2018-01-31'");
+        $rs = $con->query("SELECT COUNT('id_atd') AS total FROM atd WHERE data BETWEEN '$dataInicial' AND '$dataFinal'");
         $row = $rs->fetch(PDO::FETCH_OBJ); 
         $info = $row->total;
         return $info;
     }
-    public function totalStatus($data)
+    public function totalStatus($data,$dataInicial,$dataFinal)
     {
         $con = $this->conectDB($data);
         $rs = $con->query("SELECT COUNT(atd.id_status) AS cstatus, status.nome_status,status.id_status FROM `atd` INNER JOIN status ON atd.id_status = status.id_status WHERE 
-data BETWEEN '2018-01-01' AND '2018-01-31' GROUP BY status.id_status, status.nome_status");
+data BETWEEN '$dataInicial' AND '$dataFinal' GROUP BY status.id_status, status.nome_status");
         $cont = 0;
         $info;
         while ($row = $rs->fetch(PDO::FETCH_OBJ)){
@@ -35,11 +35,29 @@ data BETWEEN '2018-01-01' AND '2018-01-31' GROUP BY status.id_status, status.nom
         
         return $info;
     }
-    public function totalUsers($data)
+    
+    public function totalProblemas($data,$dataInicial,$dataFinal)
+    {
+        $con = $this->conectDB($data);
+        $rs = $con->query("SELECT COUNT(atd.id_problema) AS cproblema, problema.* FROM `atd` INNER JOIN problema ON atd.id_problema = problema.id_problema WHERE 
+data BETWEEN '$dataInicial' AND '$dataFinal' GROUP BY problema.id_problema, problema.nome_problema");
+        $cont = 0;
+        $info;
+        while ($row = $rs->fetch(PDO::FETCH_OBJ)){
+            $info[$cont]['id_problema'] = $row->id_problema;
+            $info[$cont]['cproblema'] = $row->cproblema;
+            $info[$cont]['problema'] = utf8_encode($row->nome_problema);
+            $cont++;
+        }
+        
+        return $info;
+    }
+
+    public function totalUsers($data,$dataInicial,$dataFinal)
     {
         $con = $this->conectDB($data);
         $rs = $con->query("SELECT COUNT(atd.id_users) AS cusers, users.name_users FROM `atd` 
-INNER JOIN users ON atd.id_users = users.id_users WHERE users.level_users <= 2 AND data BETWEEN '2018-01-01' AND '2018-01-31'
+INNER JOIN users ON atd.id_users = users.id_users WHERE users.level_users <= 2 AND data BETWEEN '$dataInicial' AND '$dataFinal'
  GROUP BY users.name_users");
         $cont = 0;
         $info;
@@ -51,23 +69,21 @@ INNER JOIN users ON atd.id_users = users.id_users WHERE users.level_users <= 2 A
         
         return $info;
     }
-    public function dadosStatusPorUsuarios($data) {
+    public function dadosStatusPorUsuarios($data,$dataInicial,$dataFinal) {
         $con = $this->conectDB($data);
         $rs = $con->query("SELECT users.id_users, status.*,COUNT(atd.id_status) AS cstatus
 FROM users CROSS JOIN status INNER JOIN atd ON status.id_status = atd.id_status  WHERE  users.id_users <> 
 atd.id_users AND users.level_users <= 2 AND atd.data BETWEEN '2018-01-01' AND '2018-01-31' GROUP BY users.id_users,
 status.id_status LIMIT 5000 ");
-        $cont = 0;
-        $info;
+        $info = null;
         while ($row = $rs->fetch(PDO::FETCH_OBJ)){
             $info[$row->id_users][]= array($row->id_status,$row->cstatus);
         }
-        $dadosStatus = $this->totalStatus($data);
-        $resultado;
+        $dadosStatus = $this->totalStatus($data,$dataInicial,$dataFinal);
+        $resultado = null;
         foreach ($info AS $key => $value){
             foreach ($value as $k => $v){
-                foreach ($dadosStatus as $c => $val){
-                    
+                foreach ($dadosStatus as $c => $val){                    
                     if($v[0]==$val['id_status']){
                        /* print 'id_status =='.$val['id_status'];
                         print 'ctg_status =='.($val['cstatus']-$v[1]);
@@ -79,5 +95,28 @@ status.id_status LIMIT 5000 ");
         }
         return $resultado;
     }
+    public function atdPorHora($data, $ih=null,$fh=null,$id=null,$fd=null){
+        //setando valores default para hora e data
+        $inicioHora = (is_null($ih))?'00:00:00.000000':$ih;
+        $fimHora = (is_null($fh))?'00:59:59.999999':$fh;
+        
+        //query de solicitação de acordo com os filtros
+        $query = "SELECT COUNT('horas') AS horas FROM atd WHERE hora BETWEEN '$inicioHora' AND '$fimHora' AND data BETWEEN '$id' AND '$fd'";
+        //conecta ao banco
+        $con = $this->conectDB($data);
+        //executa a query e tras o resultado para $rs
+        $rs = $con->query($query);
+        //armazena o resultado de $rs em $row em forma de objeto
+        $row = $rs->fetch(PDO::FETCH_OBJ);
+        //armazena o valor de horas em $result
+        $result = $row->horas;
+        //retorna o valor de result
+        return $result;
+    }
+    
+    
+    
+    
+    
     
 }

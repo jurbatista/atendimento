@@ -3,22 +3,27 @@
 }
 /*Cor de fundo*/
 body{
-	background: #eee;
+	/* background: #eee; */
 	font-family: helvetica;
 }
+
 /*Efeito do topo*/
 #topo{
 	background-color: #191970;
 	width: 100%;
-	height: 40px;
-	padding-top:10px;
+	height: 30px;
+	padding-top: 5px;
+	box-shadow: 5px 0px 15px #000;
+	border-top: 2px solid #ff8835;
+	border-bottom: 1px solid #888;
 }
 /*Efeito do menu do lado direito*/
 #info{
 	margin-right: 15px;
 	margin-top: 5px;
 	color: white;
-	font-weight: bold;
+	/* font-weight: bold; */
+	font-size: 14px;
 }
 #info a{
 	color: white;
@@ -35,20 +40,27 @@ body{
 /*Alinhamento do form*/
 .center {
     margin: auto;
-    margin-top: 40px;
+    margin-top: 45px;
     width: 670px;
-    border: 2px solid black;
-    border-radius: 7px;
-    padding: 30px;
+    box-shadow: 10px 10px 30px #999;
+    background: #fefefe;
+    /* border-radius: 8px; */
+    color: black;
+    text-shadow: 2px 1px 2px white;
+    border: 1px solid #ddd;
+    padding: 15px;
 }
 /*Efeito dos Inputs */
 .campos{
-	border-radius: 5px;
-	padding: 15px;
+	border-radius: 3px;
+	border: 1px solid #bbb;
+	padding: 5px;
 	margin: 2px;
-	height: 50px;
-	margin-top: 10px;
-	width: 260px;
+	height: 37px;
+	margin-top: 5px;
+	width: 260;
+	background-image: linear-gradient(to bottom, #e0e0e0, #ffffff 6px);
+	font-family: unset;
 }
 /*Botao verde*/
 .btn_env:hover{
@@ -69,6 +81,7 @@ body{
 	cursor: pointer;
 	margin-top: 15px;
 	width: 100px;
+	border: none;
 }
 /*Botao veermelho*/
 .btn_zerar:hover{
@@ -89,15 +102,20 @@ body{
 	cursor: pointer;
 	width:100px;
 	margin-top: 15px;
+	border: none;
 }
 #rodape{
+	position: absolute;
 	text-align: center;
-	background: #FF530D;
+	background: #191970;
 	width: 100%;
-	height: 50px;
-	margin-top: 40px;
-	padding-top: 25px;
+	height: 20px;
+	/* margin-top: 40px; */
+	padding-top: 10px;
 	color: white;
+	bottom: 0px;
+	box-shadow: 0px -3px 10px #999;
+	font-size: 13px;
 }
 #prot{
 	position: relative;

@@ -22,6 +22,7 @@ if (count($result) == 0) {
             $_SESSION['name'] = $userData['name'];
             $_SESSION['email'] = $userData['email'];
             $_SESSION['id'] = $userData['id'];
+			$cfg->logMsg($_SESSION['name']." logou. ","../info.log");
             header("location:../index.php?pg=choice"); 
         } else {
             loginErro();

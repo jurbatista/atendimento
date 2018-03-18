@@ -1,0 +1,19 @@
+#geral{
+	animation: fadein 0.5s;
+}
+@keyframes fadein {
+from { opacity: 0.3; }
+to { opacity: 1; } /* Padrão */
+}
+@-moz-keyframes fadein {
+from { opacity: 0.3; }
+to { opacity: 1; } /* Firefox */
+}
+@-webkit-keyframes fadein {
+from { opacity: 0.3; }
+to { opacity: 1; } /* Webkit */
+}
+@-ms-keyframes fadein {
+from { opacity: 0.3; }
+to { opacity: 1; } /* IE */
+}​

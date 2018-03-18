@@ -9,11 +9,12 @@ class formAtdM extends root
         $con = $this->conectDB($data);
         $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
+        $dados['nota'] = utf8_decode($dados['nota']);
         
          $stmt = $con->prepare("INSERT INTO atd(prot_atd, nome_cliente, notas, id_tecnologia, id_bairro, id_cidade,id_users,id_status,id_problema, id_radios,data,hora,telefone_cliente) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
          $stmt->bindParam(1, $dados['protocolo']);
          $stmt->bindParam(2, $dados['cliente']);
-         $stmt->bindParam(3, utf8_decode($dados['nota']));
+         $stmt->bindParam(3, $dados['nota']);
          $stmt->bindParam(4, $dados['id_tec']);
          $stmt->bindParam(5, $dados['id_bairro']);
          $stmt->bindParam(6, $dados['id_cidade']);
@@ -110,6 +111,12 @@ class formAtdM extends root
             $cont ++;
         }
         return $info;
+    }
+    public function deleteAtd($data, $id){
+        $con = $this->conectDB($data);
+        $query = "DELETE FROM `atd` WHERE `id_atd` = $id ";
+        $con->exec($query);
+        return true;
     }
 }
 ?>

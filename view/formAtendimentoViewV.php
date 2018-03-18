@@ -67,8 +67,13 @@
 							<td>Tecnlogia</td>
 							<td><label class="container"> &nbsp;&nbsp;<input type="radio" name="tec"
 									value="1" style="cursor: pointer;" <?=(1==$received->id_tecnologia)?'checked="checked"':'';?>  > Fibra <span
-									class="checkmark" ></span><br>&nbsp;
-							</label> <label class="container"> <input type="radio" name="tec"
+									class="checkmark" ></span></label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+									<label class="container"> <input type="radio" name="tec"
+								value="3" style="cursor: pointer;" <?=(3==$received->id_tecnologia)?'checked="checked"':'';?>> Eng. de Rede <span
+								class="checkmark"></span></label><br>&nbsp;
+
+									<label class="container"> <input type="radio" name="tec"
 									value="2" style="cursor: pointer;" <?=(2==$received->id_tecnologia)?'checked="checked"':'';?>  > Rádio <span
 									class="checkmark"></span>
 							</label></td>
@@ -100,7 +105,7 @@
 						<table>
 							<tr>
 								<td style="vertical-align: top">Notas:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-								<td><textarea rows="5" cols="70" name="notas" disabled="disabled"><?=utf8_encode($received->notas)?></textarea></td>
+								<td><textarea style="width: 585px; height: 100px;" name="notas" disabled="disabled"><?=utf8_encode($received->notas)?></textarea></td>
 							</tr>
 						</table>
 						<table id="table3" width="654px">
